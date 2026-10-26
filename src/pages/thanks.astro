@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const base = import.meta.env.BASE_URL;
+const homeUrl = `${base}`;
+---
+<Layout title="Thank you" description="Thank you for contacting STREEPS.">
+  <section class="container contact-page">
+    <header>
+      <h1>Thank you for getting in touch.</h1>
+      <p>Your message has been received. We&apos;ll review your enquiry and get back to you shortly.</p>
+    </header>
+    <a class="hero-link" href={homeUrl}>Return to home <span>↗</span></a>
+  </section>
+</Layout>
