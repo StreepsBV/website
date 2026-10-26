@@ -1,0 +1,39 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { portfolio } from '../../data/portfolio';
+
+export function getStaticPaths() {
+  return portfolio.map((work) => ({
+    params: { slug: work.slug },
+    props: { work },
+  }));
+}
+
+const { work } = Astro.props;
+---
+<Layout title={work.title} description={`${work.title} — ${work.category} by STREEPS.`}>
+  <article class="container work-page">
+    <a class="back-link" href="/portfolio/">← Back to portfolio</a>
+    <header class="work-header">
+      <div>
+        <span class="portfolio-kicker">{work.category}</span>
+      </div>
+      <p>{work.summary}</p>
+    </header>
+    <div class="work-gallery">
+      {[work.image, ...(work.images ?? [])].map((image, index) => (
+        <img
+          class={index === 0 ? 'work-hero' : 'work-gallery-image'}
+          src={image}
+          alt={`${work.imageAlt}${index === 0 ? '' : ` — image ${index + 1}`}`}
+          width="1400"
+          height="950"
+          loading={index === 0 ? 'eager' : 'lazy'}
+        />
+      ))}
+    </div>
+    <div class="work-details">
+      <p>{work.description}</p>
+    </div>
+  </article>
+</Layout>

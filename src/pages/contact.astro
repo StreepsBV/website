@@ -1,18 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 ---
-<Layout title="Contact" description="Get in touch with STREEPS.">
+<Layout title="Contact" description="Contact STREEPS for expert yacht and residence painting.">
   <section class="container contact-page">
     <header>
-      <h1>Get in touch.</h1>
-      <p>Have a question, idea or collaboration in mind? Send us a message.</p>
+      <h1>Let&apos;s make it beautiful.</h1>
+      <p>Planning a yacht refit or refreshing your residence? Tell us about your project and we&apos;ll be in touch.</p>
     </header>
+    <div class="contact-details" aria-label="Contact details">
+      <div>
+        <span class="contact-label">Email</span>
+        <a href="mailto:infostreeps@icloud.com">infostreeps@icloud.com</a>
+      </div>
+      <div>
+        <span class="contact-label">Follow our work</span>
+        <div class="social-links">
+          <a href="https://www.instagram.com/streepspainters/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.facebook.com/profile.php?id=61566968831187" target="_blank" rel="noreferrer">Facebook</a>
+        </div>
+      </div>
+    </div>
     <form
       class="contact-form"
       action="https://formsubmit.co/infostreeps@icloud.com"
       method="POST"
     >
-      <input type="hidden" name="_subject" value="New message from the STREEPS website" />
+      <input type="hidden" name="_subject" value="New painting enquiry from the STREEPS website" />
       <input type="hidden" name="_next" value="/" />
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
       <div class="field">

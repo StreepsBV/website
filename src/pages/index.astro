@@ -1,12 +1,57 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { portfolio } from '../data/portfolio';
 ---
-<Layout title="Home" description="STREEPS — ideas, work and perspective.">
+<Layout title="Home" description="STREEPS — meticulous painting for yachts and residences.">
   <section class="container page-intro">
-    <h1>Ideas, work<br />and perspective.</h1>
-    <p>A place for the content and stories that make STREEPS.</p>
+    <div class="hero-copy">
+      <span class="eyebrow">Yacht &amp; residence painting</span>
+      <h1>Beautiful finishes, <br />built to last</h1>
+      <p>Expert painting for yachts and residences, delivered with care, precision and a timeless eye.</p>
+      <a class="hero-link" href="/portfolio/">Explore our work <span>↗</span></a>
+    </div>
+    <a class="hero-image" href={`/portfolio/${portfolio[0].slug}/`}>
+      <img src={portfolio[0].image} alt={portfolio[0].imageAlt} width="1400" height="950" fetchpriority="high" />
+      <span>Featured project <b>↗</b></span>
+    </a>
   </section>
-  <section class="container content-placeholder" aria-label="Homepage content">
-    <p>Your homepage content can go here.</p>
+  <section class="container latest-work" aria-labelledby="latest-work-title">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">Selected projects</span>
+        <h2 id="latest-work-title">Latest work</h2>
+      </div>
+      <a class="text-link" href="/portfolio/">View portfolio</a>
+    </div>
+    <div class="latest-work-grid">
+      {portfolio.slice(0, 3).map((work) => (
+        <article class="latest-work-card">
+          <a class="latest-work-image" href={`/portfolio/${work.slug}/`}>
+            <img src={work.image} alt={work.imageAlt} width="1400" height="950" loading="lazy" />
+          </a>
+          <span class="portfolio-kicker">{work.category}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="service-band" aria-label="Our painting services">
+    <div class="container service-band-inner">
+      <span class="eyebrow">Our approach</span>
+      <div>
+        <h2>At home, on land<br />or at sea.</h2>
+        <p>From a yacht's refined interior to the character of a coastal residence, we create flawless surfaces that make every space feel considered. Our finish is meticulous, our approach is dependable, and every project receives the same personal attention.</p>
+        <a class="light-link" href="/contact/">Start a conversation <span>↗</span></a>
+      </div>
+    </div>
+  </section>
+  <section class="container homepage-social" aria-label="Follow STREEPS">
+    <div>
+      <span class="eyebrow">Keep in touch</span>
+      <p>See more of our work and recent projects.</p>
+    </div>
+    <div class="social-buttons">
+      <a class="social-button" href="https://www.instagram.com/streepspainters/" target="_blank" rel="noreferrer">Instagram</a>
+      <a class="social-button" href="https://www.facebook.com/profile.php?id=61566968831187" target="_blank" rel="noreferrer">Facebook</a>
+    </div>
   </section>
 </Layout>
