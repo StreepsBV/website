@@ -1,6 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { portfolio } from '../data/portfolio';
+const base = import.meta.env.BASE_URL;
+const pageUrl = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
+const assetUrl = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
 ---
 <Layout title="Portfolio" description="Explore the yacht and residence painting portfolio of STREEPS.">
   <section class="container portfolio-page">
@@ -11,8 +14,8 @@ import { portfolio } from '../data/portfolio';
     <div class="portfolio-grid">
       {portfolio.map((work) => (
         <article class="portfolio-card">
-          <a class="portfolio-card-image" href={`/portfolio/${work.slug}/`}>
-            <img src={work.image} alt={work.imageAlt} width="1400" height="950" loading="lazy" />
+          <a class="portfolio-card-image" href={pageUrl(`/portfolio/${work.slug}/`)}>
+            <img src={assetUrl(work.image)} alt={work.imageAlt} width="1400" height="950" loading="lazy" />
           </a>
           <div class="portfolio-card-copy">
             <span class="portfolio-kicker">{work.category}</span>

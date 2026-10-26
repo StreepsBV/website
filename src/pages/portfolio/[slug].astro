@@ -10,10 +10,13 @@ export function getStaticPaths() {
 }
 
 const { work } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const pageUrl = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
+const assetUrl = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
 ---
 <Layout title={work.title} description={`${work.title} — ${work.category} by STREEPS.`}>
   <article class="container work-page">
-    <a class="back-link" href="/portfolio/">← Back to portfolio</a>
+    <a class="back-link" href={pageUrl('/portfolio/')}>← Back to portfolio</a>
     <header class="work-header">
       <div>
         <span class="portfolio-kicker">{work.category}</span>
@@ -24,7 +27,7 @@ const { work } = Astro.props;
       {[work.image, ...(work.images ?? [])].map((image, index) => (
         <img
           class={index === 0 ? 'work-hero' : 'work-gallery-image'}
-          src={image}
+          src={assetUrl(image)}
           alt={`${work.imageAlt}${index === 0 ? '' : ` — image ${index + 1}`}`}
           width="1400"
           height="950"
