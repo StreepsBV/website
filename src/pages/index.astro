@@ -27,7 +27,7 @@ const assetUrl = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
       <a class="text-link" href={pageUrl('/portfolio/')}>View portfolio</a>
     </div>
     <div class="latest-work-grid">
-      {portfolio.slice(0, 3).map((work) => (
+      {portfolio.slice(1, 4).map((work) => (
         <article class="latest-work-card">
           <a class="latest-work-image" href={pageUrl(`/portfolio/${work.slug}/`)}>
             <img src={assetUrl(work.image)} alt={work.imageAlt} width="1400" height="950" loading="lazy" />
@@ -41,8 +41,8 @@ const assetUrl = (path: string) => `${base}${path.replace(/^\/+/, '')}`;
     <div class="container service-band-inner">
       <span class="eyebrow">Our approach</span>
       <div>
-        <h2>At home, on land<br />or at sea.</h2>
-        <p>From a yacht's refined interior to the character of a coastal residence, we create flawless surfaces that make every space feel considered. Our finish is meticulous, our approach is dependable, and every project receives the same personal attention.</p>
+        <h2>At home, on land<br />or at sea</h2>
+        <p>From a yacht's refined exterior to the character of a residence interior, we create flawless surfaces that make every space feel considered. Our finish is meticulous, our approach is dependable, and every project receives the same personal attention.</p>
         <a class="light-link" href={pageUrl('/contact/')}>Start a conversation <span>↗</span></a>
       </div>
     </div>

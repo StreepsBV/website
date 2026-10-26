@@ -48,4 +48,16 @@ export const portfolio: PortfolioWork[] = [
     summary: 'An Elegant yacht with refined details.',
     description: 'Restored and refined the yacht’s exterior finish with hand-painted awlgrip.',
   },
+  {
+    slug: 'cafe-kleine-tunnel',
+    title: '',
+    category: 'Residence painting',
+    location: '',
+    year: '',
+    image: '/content/portfolio/cafe-kleine-tunnel/front.jpg',
+    images: ['/content/portfolio/cafe-kleine-tunnel/2.jpg'],
+    imageAlt: '',
+    summary: 'A new look for a charming cafe.',
+    description: 'Repainted the cafe in a modern style.',
+  },
 ];
