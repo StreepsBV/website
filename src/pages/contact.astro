@@ -1,7 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-const siteOrigin = Astro.site?.origin ?? 'https://streepsbv.github.io';
-const confirmationUrl = new URL(`${import.meta.env.BASE_URL}thanks/`, siteOrigin).href;
 ---
 <Layout title="Contact" description="Contact STREEPS for expert yacht and residence painting.">
   <section class="container contact-page">
@@ -22,27 +20,43 @@ const confirmationUrl = new URL(`${import.meta.env.BASE_URL}thanks/`, siteOrigin
         </div>
       </div>
     </div>
-    <form
-      class="contact-form"
-      action="https://formsubmit.co/infostreep@gmail.com"
-      method="POST"
-    >
-      <input type="hidden" name="_subject" value="New painting enquiry from the STREEPS website" />
-      <input type="hidden" name="_next" value={confirmationUrl} />
-      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+    <form id="contact-form" class="contact-form">
       <div class="field">
         <label for="name">Name</label>
-        <input id="name" name="name" type="text" required autocomplete="name" />
+        <input id="name" name="name" type="text" required maxlength="150" autocomplete="name" />
       </div>
       <div class="field">
         <label for="email">Email address</label>
-        <input id="email" name="email" type="email" required autocomplete="email" />
+        <input id="email" name="email" type="email" required maxlength="254" autocomplete="email" />
       </div>
       <div class="field">
         <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
+        <textarea id="message" name="message" required maxlength="5000"></textarea>
       </div>
-      <button class="submit-button" type="submit">Send message</button>
+      <p>This opens a draft in your email application. Send it there to contact us.</p>
+      <button class="submit-button" type="submit">Open email draft</button>
+      <noscript>
+        <p>JavaScript is needed to prepare the draft. Email <a href="mailto:infostreeps@icloud.com">infostreeps@icloud.com</a> directly.</p>
+      </noscript>
+      <p id="contact-status" role="status"></p>
     </form>
   </section>
 </Layout>
+<script>
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+
+  form?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const data = new FormData(form);
+    const subject = `STREEPS painting enquiry — ${data.get('name')}`;
+    const body = `${data.get('message')}\n\n${data.get('name')}\n${data.get('email')}`;
+    window.location.href = `mailto:infostreeps@icloud.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    const status = document.querySelector('#contact-status');
+    if (status) {
+      status.textContent = 'Email draft requested. If your email application did not open, email infostreeps@icloud.com directly.';
+    }
+  });
+</script>
